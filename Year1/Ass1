@@ -1,0 +1,245 @@
+##########################################
+## CE151 ASSIGNMENT 1: DO NOT REMOVE    ##
+##########################################
+import unittest
+##########################################
+## CE151 ASSIGNMENT 1: DO NOT REMOVE    ##
+##########################################
+
+#### Exercise 1
+def fun_exercise_1 ( x , y ) :
+
+    #if the X is odd
+    if x % 2!=0 :
+        n = [ i - 1 for i in y ] #subtract 1 from the element
+        print(sum( n )) #sum the elements
+
+    #if the X is even
+    elif x % 2==0 :
+        n = [ i * 2 for i in y ] #multiplies each element of y by 2
+        print(sum( n ))#sum the elements
+
+    #if the X is zero
+    elif x==0 : #making sure that X = 0
+        print(sum( y ))#sum the elements
+
+#### Exercise 2
+def fun_exercise_2(y):
+    if y[0] % 2 == 1:
+        n=[ y * 2 for y in y ]
+        answer = 1
+        for i in n:
+            answer *=i
+        print(answer)
+        return(answer)
+    elif y[2] % 2 == 1:
+        b = [  y / 2 for y in y]
+        print (b)
+        bsum = sum(b)
+        print(bsum)
+        return(bsum)
+    else:
+        a=( y**2 for y in y)
+        asum = sum(a)
+        print(asum)
+        return(asum)
+
+
+
+#### Exercise 3
+def fun_exercise_3(y):
+    z = []
+    count = int(len(y) / 2)
+    for i in range(count):
+        if y[-i-1] < y[i]:
+            z.append(True)
+        else:
+            z.append(False)
+    print(z)
+
+
+
+#### Exercise 4
+def fun_exercise_4 (y) :
+    y.sort()
+    if len( y )==0 :
+        print("None")
+        return ("None")
+    elif len( y )==5 :
+        print(y[ 2 ])
+        return (y[ 2 ])
+    elif len( y ) < 5 :
+        a = len( y )
+        print(a)
+        return (a)
+    elif len( y ) < 3 :
+        print(y[ 1 ])
+        return (y[ 1 ])
+
+
+#### Exercise 5
+def fun_exercise_5(x):
+    a = reversed(x)
+    if list(x) == list(a):
+        print(False)
+    else:
+        print(True)
+
+
+#### Exercise 6
+def fun_exercise_6(x):
+    x = list(x)
+    change_letters = {"A": "a", "B": "b", "C": "c", "D": "d", "E": "e", "F": "f", "G": "g", "H": "h", "I": "i", "J": "j", "K": "k", "L": "l", "m": "M", "n": "N", "o": "O", "p": "P", "q": "Q", "r": "R", "s": "S", "t": "T", "u": "U", "v": "V", "w": "W", "x": "X", "y": "Y", "z": "Z"}
+    i = 0
+    for letter in x:
+        if letter in change_letters:
+            x[i] = change_letters[letter]
+        i += 1
+    y = ""
+    for letter in x:
+        y += letter
+    print (y)
+    return y
+
+#### Exercise 7
+def fun_exercise_7(x):
+    i = 0
+    ptr = -1
+    for text in x:
+        temp = text
+        for text1 in x:
+            if temp in text1 and temp != text1:
+                ptr = i
+        i += 1
+    print (ptr)
+    return ptr
+
+#### Exercise 8
+def fun_exercise_8(x):
+    return None
+
+##############################################
+## BEGIN: CE151 TEST CODE: DO NOT REMOVE    ##
+##############################################
+class TestAssignment1(unittest.TestCase):
+
+#function 1
+    def test1_exercise_1(self):
+        self.assertTrue(fun_exercise_1(3,[4,2,3]) == 6)
+
+    def test2_exercise_1(self):
+        self.assertTrue(fun_exercise_1(2,[2,3,4]) == 18)
+
+    def test3_exercise_1(self):
+        self.assertTrue(fun_exercise_1(0,[5,3,2]) == 10)
+
+    def test4_exercise_1(self):
+        self.assertTrue(fun_exercise_1(3,[1,1,1]) == 0)
+
+#function 2
+    def test1_exercise_2(self):
+        self.assertTrue(fun_exercise_2([3, 2, 4]) == 192)
+
+    def test2_exercise_2(self):
+        self.assertTrue(fun_exercise_2([6, 2, 3]) == 5.5)
+
+    def test3_exercise_2(self):
+        self.assertTrue(fun_exercise_2([6, 5, 4]) == 77)
+
+    def test4_exercise_2(self):
+        self.assertTrue(fun_exercise_2([1, 2, 3]) == 48)
+
+#function 3 *****
+    def test1_exercise_3(self):
+        self.assertTrue(fun_exercise_3([2, 3, 4, 5, 6, 7]) ==[False, False,False])
+
+    def test2_exercise_3(self):
+        self.assertTrue(fun_exercise_3([6, 4, 3, 2, 1, 0]) == [True,True,True])
+
+    def test3_exercise_3(self):
+        self.assertTrue(fun_exercise_3([6, 5, 4, 2]) == [True, True])
+
+    def test4_exercise_3(self):
+        self.assertTrue(fun_exercise_3([1, 2, 3, 4]) == [False, False])
+
+#function 4
+    def test1_exercise_4(self):
+        self.assertTrue(fun_exercise_4([5, 3, 4, 2 , 6]) == 4)
+
+    def test2_exercise_4(self):
+        self.assertTrue(fun_exercise_4([3, 2, 6]) == 3)
+
+    def test3_exercise_4(self):
+        self.assertTrue(fun_exercise_4([]) == None)
+
+    def test4_exercise_4(self):
+        self.assertTrue(fun_exercise_4([2, 3, 4, 7, 6, 5]) == 5 )
+
+#function 5
+    def test1_exercise_5(self):
+        self.assertTrue(fun_exercise_5("osso") == False)
+
+    def test2_exercise_5(self):
+        self.assertTrue(fun_exercise_5("goat") == True)
+
+    def test3_exercise_5(self):
+        self.assertTrue(fun_exercise_5("Mom") == False)
+
+    def test4_exercise_5(self):
+        self.assertTrue(fun_exercise_5("boat") == True )
+
+#function 6
+    def test1_exercise_6(self):
+        self.assertTrue(fun_exercise_6("osso") == "OSSO")
+
+    def test2_exercise_6(self):
+        self.assertTrue(fun_exercise_6("goat") == "gOaT")
+
+    def test3_exercise_6(self):
+        self.assertTrue(fun_exercise_6("bag") == "bag")
+
+    def test4_exercise_6(self):
+        self.assertTrue(fun_exercise_6("boat") == "bOaT" )
+
+#function 7
+    def test1_exercise_7(self):
+        list1 = ["goat"]
+        ptr = fun_exercise_7(list1)
+        self.assertTrue(ptr == -1)
+
+    def test2_exercise_7(self):
+        list1 = ["soul", "soulmate", "origin"]
+        ptr = fun_exercise_7(list1)
+        self.assertTrue(ptr == 0)
+
+    def test3_exercise_7(self):
+        list1 = ["FASER", "submission", "online", "drive", "frequent"]
+        ptr = fun_exercise_7(list1)
+        self.assertTrue(ptr == -1)
+
+    def test4_exercise_7(self):
+        list1 = ["banana", "applejuice", "kiwi", "strawberry", "apple", "peer"]
+        ptr = fun_exercise_7(list1)
+        self.assertTrue(ptr == 4)
+
+    #function 8
+    def test1_exercise_8(self):
+        self.assertTrue(fun_exercise_8("GTTAAA") == "T")
+
+
+    def test2_exercise_8(self):
+        self.assertTrue(fun_exercise_8("unforeseen") == "n")
+
+
+    def test3_exercise_8(self):
+        self.assertTrue(fun_exercise_8("developed") == "d")
+
+
+    def test4_exercise_8(self):
+        self.assertTrue(fun_exercise_8("circumstances") == "s")
+
+if __name__ == '__main__':
+    unittest.main()
+##############################################
+## END: CE151 TEST CODE: DO NOT REMOVE      ##
+##############################################
