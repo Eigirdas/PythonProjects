@@ -1,0 +1,143 @@
+##########################################TASK 1
+
+#Converts the words from the input file to tuples
+def string_to_player(string):
+    player = string.strip('\n').split(' ')
+    player[4] = int(player[4].replace(',', ''))
+    return tuple(player)
+
+#Printing out the words that are made to tuples
+def print_details(p):
+    print(f'{p[3]:15}, {p[2]:15} {p[4]:10,} {p[1]:15} {p[0]:15}')
+
+players = []
+
+#reading text from the input file
+try:
+    with open(input("Filename: ")) as f:
+        for line in f.readlines():
+            players.append(string_to_player(line))
+except FileNotFoundError as e:
+    print(e) # if file was not found
+
+for player in players:
+    print_details(player)
+
+quit_loop = False
+
+#start of the function where details of certain player is selected
+while not quit_loop:
+    print('''Select Option:
+        (a) display full details of a player with a certain lastname
+        (b) quit options
+        ''')
+
+    option = input('Select Option: ')
+#if user inputs 'a' you need to write last name of the player that you want to see details of
+    if option == 'a':
+        lastname = input('Enter lastname: ')
+        lastname_player = ()
+# chooses the last name,and that is 4th (says 3rd because it starts from 0) word in the line
+        for player in players:
+            if player[3] == lastname:
+                lastname_player = player
+                break
+# if there is no player with certain last name, print "Found no players with this lastname"
+        if lastname_player:
+            print_details(lastname_player)
+        else:
+            print('Found no players with this lastname')
+
+    elif option == 'b':
+        quit_loop = True
+    
+    else:
+        print('There is no such option')
+
+#this is the options that you get then user input is b
+print('Search players by team and position: ')
+team = input('Enter the team: ')
+position = input('Enter the position: ')
+
+for player in players:
+    if player[0] == team and player[1] == position:
+        print_details(player)
+
+print('Search players by salary range:')
+lower_bound = int(input('Minimum salary: ').replace(',', ''))
+upper_bound = int(input('Maximum salary: ').replace(',', ''))
+
+players_by_salary = []
+
+for player in players:
+    if lower_bound <= player[4] <= upper_bound:
+        players_by_salary.append(player)
+#Sorting out
+players_by_salary = sorted(players_by_salary, key=lambda x:[4])
+
+for player in players_by_salary:
+    print_details(player)
+
+#####################################TASK 2
+
+#Converts the words from the input file to tuples
+def string_to_A(string):
+    A = string.strip('\n').split(' ')
+    A[3] = int(A[3].replace(',', ''))
+    return tuple(A)
+
+#Printing out the words in specific order
+def print_details(p):
+        print(f'{p[0]:1} n. citizens: {p[3]:15}')
+
+As = []
+
+#importing information from a file
+try:
+    with open(input("Filename: ")) as f:
+        for line in f.readlines():
+            As.append(string_to_A(line))
+except FileNotFoundError as e:
+    print(e) # if file was not found
+
+for A in As:
+    print_details(A)
+
+quit_loop = False
+
+while not quit_loop: #Meniu selections
+    print('''Select Option:
+        (ai) display full details of a city 
+        (aii) display cities with a population in a particular range
+        (b) display cities within 10Km range
+        ''')
+
+    option = input('your option: ')
+#one of the user selections from meniu,this time its City information
+    if option == 'ai':
+        City = input('Enter city name: ')
+        City_A = ()
+
+        for A in As:
+            if A[0] == City:
+                City_A = A
+                break
+#printing out the information of the city that is chosen
+        if City_A:
+            print_details(City_A)
+    if option == 'aii':
+    # searching for a city that has the same stated ammount of citizens    
+        lower_bound = int(input('Minimum citizens: ').replace(',', ''))
+        upper_bound = int(input('Maximum citizens: ').replace(',', ''))
+
+
+As_by_People = []
+
+for A in As:
+    if lower_bound <= A[4] <= upper_bound:
+        As_by_People.append(A)
+#Sorting out
+As_by_People = sorted(As_by_People, key=lambda x:[4])
+
+for A in As_by_People:
+    print_details(A)
